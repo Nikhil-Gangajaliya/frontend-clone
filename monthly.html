@@ -1,0 +1,128 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Transactions</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- ✅ Flatpickr Core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- ✅ Month Select Plugin CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+
+    <!-- ✅ Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- ✅ Month Select Plugin JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+
+</head>
+
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="nav-parent">
+        <header class="desktop-nav">
+            <div class="name">
+                <h2>Name</h2>
+            </div>
+            <div class="top-menu">
+                <a href="index.html" class="">Main
+                    Dashboard</a>
+                <a href="add_party.html" class="">Add Party</a>
+                <a href="parties.html" class="">Parties List</a>
+                <a href="monthly.html" class="active">Monthly
+                    Reports</a>
+                <a href="yearly.html" class="">Yearly Reports</a>
+            </div>
+
+            <div class="bottom-menu">
+                <a href="profile.html" class="">Profile</a>
+                <a href="logout.html">Logout</a>
+            </div>
+
+        </header>
+    </div>
+</body>
+
+</html>    <div class="page-container">
+        <h2 class="page-title">Monthly Transactions</h2>
+
+        <!-- 🔹 Month Selector -->
+        <form method="GET" class="month-filter" autocomplete="off">
+            <label for="month">Select Month:</label>
+            <input type="text" id="month" name="month" placeholder="YYYY-MM" value="2025-10">
+            <button type="submit" class="filter">Filter</button>
+        </form>
+
+        <!-- ✅ Month-Year Picker Script -->
+        <script>
+            flatpickr("#month", {
+                plugins: [
+                    new monthSelectPlugin({
+                        shorthand: true,
+                        dateFormat: "Y-m",  // MySQL friendly
+                        altFormat: "F Y",   // Displayed as “October 2025”
+                        theme: "dark"
+                    })
+                ]
+            });
+        </script>
+
+        <h4 class="month-title">October 2025</h4><table class="monthly-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Party Name</th>
+                                    <th>Purpose</th>
+                                    <th>Debit (₹)</th>
+                                    <th>Credit (₹)</th>
+                                    <th>Reference</th>
+                                </tr>
+                            </thead>
+                            <tbody><tr>
+                                <td>2025-10-08</td>
+                                <td>Nikhil Gajjar</td>
+                                <td>Diwali</td>
+                                <td>550.00</td>
+                                <td>450.00</td>
+                                <td>UPI [Google Pay]</td>
+                              </tr><tr class="total-row">
+                            <td colspan="3" class="text-right">Total</td>
+                            <td>550.00</td>
+                            <td>450.00</td>
+                            <td class="balance-negative">Net: -100.00</td>
+                          </tr></tbody></table><div class="card-actions monthly">
+                            <button class="btn-pdf" onclick="exportToPDF()">PDF Export</button>
+                            <button class="btn-excel" onclick="exportToExcel()">Excel Export</button>
+                          </div>
+        <script>
+            function exportToPDF() {
+                const month = document.getElementById('month').value;
+                window.location.href = 'export_pdf.html?month=' + month;
+            }
+            function exportToExcel() {
+                const month = document.getElementById('month').value;
+                window.location.href = 'export_excel.html?month=' + month;
+            }
+        </script>
+    </div>
+</body>
+</html>

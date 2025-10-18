@@ -1,0 +1,37 @@
+
+
+<!-- HTML Login Form -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="login-page-wrapper">
+        <div class="login-container">
+            <form method="POST" autocomplete="off" action="index.html">
+                <!-- CSRF Token -->
+                <input type="hidden" name="token" value="ab8ada405c6f901e4c97c5c9d8d0bd8fcf2467ed3106650399bee30595c7fdba">
+
+                <label>Username:</label>
+                 <input type="text" name="username" required placeholder="Username" autocomplete="off"><br>
+
+                <label>Password:</label>
+                <input type="password" name="password" required placeholder="Password" autocomplete="new-password"><br>
+
+                <button type="submit" name="login" class="btn-login">Login</button>
+            </form>
+            <a href="forgot_password.html">Forgot Password?</a>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+

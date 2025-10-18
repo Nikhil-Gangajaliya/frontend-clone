@@ -1,0 +1,138 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Party Balance</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- SheetJS for Excel export -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <!-- jsPDF + AutoTable for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</head>
+
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="nav-parent">
+        <header class="desktop-nav">
+            <div class="name">
+                <h2>Name</h2>
+            </div>
+            <div class="top-menu">
+                <a href="index.html" class="">Main
+                    Dashboard</a>
+                <a href="add_party.html" class="">Add Party</a>
+                <a href="parties.html" class="">Parties List</a>
+                <a href="monthly.html" class="">Monthly
+                    Reports</a>
+                <a href="yearly.html" class="">Yearly Reports</a>
+            </div>
+
+            <div class="bottom-menu">
+                <a href="profile.html" class="">Profile</a>
+                <a href="logout.html">Logout</a>
+            </div>
+
+        </header>
+    </div>
+</body>
+
+</html>    <div class="party-report">
+        <div class="card-actions">
+            <div class="btn-back">
+                <a href="parties.html">Back</a>
+            </div>
+        </div>
+
+        <h2 class="page-title">Party: Nikhil Gajjar</h2>
+        <p><strong>Mobile:</strong> 8799027343</p>
+        <p><strong>Email:</strong> nikhil@gmail.com</p>
+        <p class="balance-info balance-negative">
+            Balance: ₹-100.00 (To Pay)
+        </p>
+
+        <h3 class="section-title">Transactions</h3>
+
+        <table class="data-table" id="transactionTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Purpose</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
+                    <th>Reference</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                                <td>2025-10-08</td>
+                                <td>Diwali</td>
+                                <td>550.00</td>
+                                <td>450.00</td>
+                                <td>UPI [Google Pay]</td>
+                                <td>
+                                    <div class="card-actions">
+                                        <a href="edit_transaction.html?id=60" class="btn-edit">Edit</a>
+                                        <a href="delete_transaction.html?id=60&party_id=23" class="btn-delete" onclick="return confirm('Are you sure to delete this transaction?')">Delete</a>
+                                    </div>
+                                </td>
+                            </tr><tr class="total-row">
+                            <td colspan="2" class="text-right">Total</td>
+                            <td>550.00</td>
+                            <td>450.00</td>
+                            <td colspan="2" class="balance-negative">Net: -100.00</td>
+                        </tr>            </tbody>
+        </table>
+
+        <div class="card-actions balance">
+            <a href="export_balance_pdf.html?id=23" class="btn-pdf">PDF Export</a>
+            <a href="export_balance_excel.html?id=23" class="btn-excel">Excel Export</a>
+        </div>
+
+    </div>
+
+    <script>
+        // Excel Export
+        function exportToExcel() {
+            let table = document.getElementById("transactionTable");
+            let wb = XLSX.utils.table_to_book(table, { sheet: "Transactions" });
+            XLSX.writeFile(wb, "transactions_report.xlsx");
+        }
+
+        // PDF Export
+        function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('l', 'pt', 'a4'); // landscape
+            doc.text("Transactions Report", 40, 30);
+            doc.autoTable({
+                html: '#transactionTable',
+                startY: 50,
+                theme: 'striped',
+                headStyles: { fillColor: [0, 102, 204] },
+                styles: { fontSize: 9 },
+            });
+            doc.save("transactions_report.pdf");
+        }
+    </script>
+</body>
+
+</html>
